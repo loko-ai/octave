@@ -1,5 +1,7 @@
+import json
+
 import oct2py
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from loguru import logger
 from loko_extensions.business.decorators import extract_value_args
 from loko_extensions.model.components import Component, save_extensions, Arg
@@ -21,14 +23,22 @@ def json_response(o):
         return o
 
 
+@app.errorhandler(Exception)
+def handle_exception(e):
+    logger.exception(e)
+    response = make_response(f"Error {e}", 500)
+    return response
+
+
 @app.route("/", methods=["POST"])
 @extract_value_args(_request=request)
 def execute(value, args):
     code = args.get("code")
-    fcode = f"""function ret=secretfunctionname()
+    _value = json.dumps(value)
+    fcode = f"""function ret=secretfunctionname(data)
       {code}
     endfunction
-    secretfunctionname()
+    secretfunctionname({_value})
     """
     logger.debug(fcode)
     result = octave.eval(fcode)
