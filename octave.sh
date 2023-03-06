@@ -1,0 +1,1 @@
+while read -r line; do octave --eval "pkg install -forge $line"; done < "/requirements_octave.txt"

@@ -3,15 +3,15 @@
   "id": "octave",
   "description": "",
   "created_on": "18/02/2023, 06:01:39",
-  "last_modify": "19/02/2023, 06:25:33",
+  "last_modify": "06/03/2023, 08:15:54",
   "graphs": {
     "main": {
       "nodes": [
         {
-          "id": "dbb797de-d416-465f-af3b-188d3614407f",
+          "id": "165c3f94-8187-4466-9d1e-5f145aa8e348",
           "position": {
-            "x": 674,
-            "y": 84
+            "x": 315,
+            "y": 14
           },
           "type": "custom",
           "dragHandle": "#nodeHandle",
@@ -24,7 +24,7 @@
           "data": {
             "name": "Octave",
             "events": null,
-            "description": "",
+            "description": "This components allows to run octave/matlab code. The return value has to be assigned to the 'ret' variable",
             "inputs": [
               {
                 "id": "input",
@@ -41,7 +41,7 @@
             ],
             "configured": true,
             "options": {
-              "group": "Custom",
+              "group": "Scripting",
               "args": [
                 {
                   "name": "comment",
@@ -67,7 +67,7 @@
                   "label": "code",
                   "helper": "",
                   "group": "",
-                  "value": null,
+                  "value": "ret=linspace(0, 2*pi)",
                   "description": "",
                   "validation": null
                 }
@@ -76,9 +76,9 @@
               "icon": "RiCheckboxBlankCircleFill",
               "values": {
                 "comment": "",
-                "alias": "",
+                "alias": "Nota",
                 "debug": true,
-                "code": "\nret=linspace(0, 2*pi, 100);"
+                "code": "function nota = findnote(x)\nlista_freq = [16.35,17.32,18.35,19.45,20.6,21.83,23.12,24.5,25.96,27.5,29.14,30.87];\nlista_note = {'DO','DO#','RE','RE#','MI','FA','FA#','SOL','SOL#','LA','LA#','SI'};\ntrasformata = fft(x,44100);\nmodulo = abs(trasformata);\n[picco,frequenza] = max(modulo);\nfrequenza = frequenza - 1;\nwhile frequenza >= 31.785\n    frequenza = frequenza/2;\nend\ndiff = lista_freq - frequenza;\ndiff = abs(diff);\n[val,pos] = min(diff);\nposnota = lista_note(pos);\nnota = char(posnota);\nend\n\n\n[datan y] = audioread('/data/nota.wav');\nret = findnote(datan)"
               }
             },
             "locked": null
@@ -86,16 +86,193 @@
           "selectable": true,
           "draggable": true,
           "positionAbsolute": {
-            "x": 674,
-            "y": 84
+            "x": 315,
+            "y": 14
           },
           "__class__": "Node"
         },
         {
-          "id": "62958033-58b9-46ce-8d4e-833443014b9c",
+          "id": "0784a7ea-5fe1-453e-a404-28700da5b991",
           "position": {
-            "x": 436,
-            "y": 69
+            "x": 73,
+            "y": -50.997039794921875
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Trigger",
+            "events": null,
+            "description": "### Description\nThe TRIGGER component is used to start streams.\n\n### Output\nThe parameter Type can be set as a **String** or an **Object**. The parameter Value, on the other hand, defines the actual output of the component.",
+            "inputs": [],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "description": "The type of data",
+                  "label": "Type",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": [
+                    "String",
+                    "Object"
+                  ],
+                  "value": null
+                },
+                {
+                  "name": "value",
+                  "type": "dynamic",
+                  "dynamicType": {
+                    "String": "area",
+                    "Object": "code"
+                  },
+                  "parent": "type",
+                  "label": "Value",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                }
+              ],
+              "click": "Send message",
+              "icon": "RiPlayFill",
+              "values": {
+                "type": "String",
+                "value": "Hello world!"
+              }
+            }
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 73,
+            "y": -50.997039794921875
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "0abfc61f-132b-46a3-87c7-7032125f3ce8",
+          "position": {
+            "x": 344,
+            "y": 221.00296020507812
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Octave",
+            "events": null,
+            "description": "This components allows to run octave/matlab code. The return value has to be assigned to the 'ret' variable",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input",
+                "service": "",
+                "to": "output"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Scripting",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "label": "code",
+                  "helper": "",
+                  "group": "",
+                  "value": "ret=linspace(0, 2*pi)",
+                  "description": "",
+                  "validation": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCheckboxBlankCircleFill",
+              "values": {
+                "comment": "",
+                "alias": "Fat-Tree",
+                "debug": false,
+                "code": "% Write a script that generates a fat tree topology graph and\n% finds all paths connecting a given source ToR and a given\n% destination ToR. Find also all disjoint paths.\nn = data;\nnservers = n*(n/2)^2;\nnedge = n/2*n;\nnaggregation = n/2*n;\nncore = (n/2)^2;\nnpods = n;\nntot = [nservers,nedge,naggregation,ncore];\nA = eye(sum(ntot));\nserv = 1;\nedge = nservers+1;\nagg = nservers+nedge+1;\n\n% Pods\nfor p = 1:npods\n    for i = 1:n/2\n        for j = 1:n/2\n            % servers - edge\n            A(serv,edge) = 1;\n            A(edge, serv) = 1;\n            serv = serv+1;\n        end\n        for k = 1:n/2\n            % edge - aggregation\n            A(edge,agg) = 1;\n            A(agg, edge) = 1;\n            agg = agg+1;\n        end\n        edge = edge+1;\n        agg = agg-n/2;\n    end\n    agg = agg+n/2;\nend\n% Core\nagg = nservers+nedge+1;\ncore = nservers+nedge+naggregation+1;\nfor p = 1:npods\n    for i = 1:n/2\n        for j = 1:n/2\n            A(agg,core) = 1;\n            A(core,agg) = 1;\n            core = core+1;\n        end\n        agg = agg+1;\n    end\n    core = nservers+nedge+naggregation+1;\nend\n        \n    \n\n\n\n% plot1\nnlevels = 4;\nk = 1;\nx = zeros(sum(ntot),1);\ny = zeros(sum(ntot),1);\nfor i = 1:nlevels\n    for j = 1:ntot(i)\n        y(k) = (i)/(nlevels+1);\n        x(k) = (j)/(ntot(i)+1);\n        k = k+1;\n    end\nend\nfigure\ngplot(A, [x y],'-k*');\nset(gca,'XTick',[],'YTick',[])\ntitle('Fat-Tree Topology','Color','k','fontsize', 18)\naxis([-0.25 1.05 0.12 0.85])\ntext (-0.22,0.2,'Servers','Color',[0 0.5 0.6],'fontsize', 11)\ntext (-0.22,0.4,'Edge','Color',[0 0.5 0.6],'fontsize', 11)\ntext (-0.22,0.6,'Aggregation','Color',[0 0.5 0.6],'fontsize', 11)\ntext (-0.22,0.8,'Core','Color',[0 0.5 0.6],'fontsize', 11)\nfor i = 0:n-1\n    text (i/n,0.17,'Pod','Color',[0 0.5 0.6],'fontsize', 11)\nend\nsaveas(gcf,'/data/network_topologies/fattree1.png')\n\n% plot2\nnlevels = 4;\nk = 1;\nx = zeros(sum(ntot),1);\ny = zeros(sum(ntot),1);\nt = zeros(sum(ntot),1);\nfor i = 1:nlevels\n    for j = 1:ntot(i)\n        x(k) = (nlevels-i+0.2)*sin(j*(2*pi)/(ntot(i)));\n        y(k) = (nlevels-i+0.2)*cos(j*(2*pi)/(ntot(i)));\n        k = k+1;\n    end\nend\nfigure\ngplot(A, [x y],'-k*')\nset(gca,'XTick',[],'YTick',[])\ntitle('Fat-Tree Topology','Color','k','fontsize', 18)\n\nsaveas(gcf,'/data/network_topologies/fattree2.png')"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 344,
+            "y": 221.00296020507812
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "77a56038-1a92-4daf-ad01-830a5b1eb5d4",
+          "position": {
+            "x": 74,
+            "y": 167.00296020507812
           },
           "type": "custom",
           "dragHandle": "#nodeHandle",
@@ -172,10 +349,10 @@
               "icon": "RiPlayFill",
               "values": {
                 "comment": "",
-                "alias": "",
+                "alias": "n pods",
                 "debug": false,
                 "type": "Object",
-                "value": "20"
+                "value": "10"
               }
             },
             "locked": null
@@ -183,18 +360,416 @@
           "selectable": true,
           "draggable": true,
           "positionAbsolute": {
-            "x": 436,
-            "y": 69
+            "x": 74,
+            "y": 167.00296020507812
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "deb981d4-c74a-4d5d-a356-b4291e664d91",
+          "position": {
+            "x": 569,
+            "y": -56
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Trigger",
+            "events": null,
+            "description": "### Description\nThe TRIGGER component is used to start streams.\n\n### Output\nThe parameter Type can be set as a **String** or an **Object**. The parameter Value, on the other hand, defines the actual output of the component.",
+            "inputs": [],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "description": "The type of data",
+                  "label": "Type",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": [
+                    "String",
+                    "Object"
+                  ],
+                  "value": null
+                },
+                {
+                  "name": "value",
+                  "type": "dynamic",
+                  "dynamicType": {
+                    "String": "area",
+                    "Object": "code"
+                  },
+                  "parent": "type",
+                  "label": "Value",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                }
+              ],
+              "click": "Send message",
+              "icon": "RiPlayFill",
+              "values": {
+                "type": "String",
+                "value": "Hello world!"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 569,
+            "y": -56
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "930fc3b6-227c-4b9b-ab00-c41cf14d0b5e",
+          "position": {
+            "x": 781,
+            "y": 13
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Octave",
+            "events": null,
+            "description": "This components allows to run octave/matlab code. The return value has to be assigned to the 'ret' variable",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input",
+                "service": "",
+                "to": "output"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Scripting",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "label": "code",
+                  "helper": "",
+                  "group": "",
+                  "value": "ret=linspace(0, 2*pi)",
+                  "description": "",
+                  "validation": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCheckboxBlankCircleFill",
+              "values": {
+                "comment": "",
+                "alias": "Tennis",
+                "debug": true,
+                "code": "img = imread(\"/data/Tennis.bmp\");\nfigure; imshow(img,[]);\n\nsaveas(gcf, '/data/tennis.png')\n\n[m n] = size(img);\nf = fftshift(fft2(img));\n\n%f(find(abs(f)==max(max(abs(f))))) = 0;\n%idxs = find(abs(f)==sort(abs(f),'descend'))(1:100);\n% levo i 100 valori pi\u00f9 alti\nfor i = 1:100\n  f(find(abs(f)==max(max(abs(f))))) = 0;\nend\n\n% lascio solo una circonferenza interna di raggio 50\nr = 50;\nfor i=1:m\n  for j = 1:n\n    if (i-m/2)^2+(j-n/2)^2>=r^2\n      f(i,j) = 0;\n    end\n  end\n  end\n\nfigure;imshow(log(1.+ abs(f)),[]);\nsaveas(gcf, '/data/tennis2.png')\nimg=ifft2(ifftshift(f));\nfigure; imshow(img,[]);\nsaveas(gcf, '/data/tennis3.png')\n"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 781,
+            "y": 13
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "bcc8aca3-5bb9-4a52-a1ec-7c2e30cdaead",
+          "position": {
+            "x": 573,
+            "y": 152
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Trigger",
+            "events": null,
+            "description": "### Description\nThe TRIGGER component is used to start streams.\n\n### Output\nThe parameter Type can be set as a **String** or an **Object**. The parameter Value, on the other hand, defines the actual output of the component.",
+            "inputs": [],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "description": "The type of data",
+                  "label": "Type",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": [
+                    "String",
+                    "Object"
+                  ],
+                  "value": null
+                },
+                {
+                  "name": "value",
+                  "type": "dynamic",
+                  "dynamicType": {
+                    "String": "area",
+                    "Object": "code"
+                  },
+                  "parent": "type",
+                  "label": "Value",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                }
+              ],
+              "click": "Send message",
+              "icon": "RiPlayFill",
+              "values": {
+                "type": "String",
+                "value": "Hello world!"
+              }
+            }
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 573,
+            "y": 152
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "7956e12d-188f-4940-b2c6-31117b22db1b",
+          "position": {
+            "x": 778,
+            "y": 176
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 72,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Octave",
+            "events": null,
+            "description": "This components allows to run octave/matlab code. The return value has to be assigned to the 'ret' variable",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input",
+                "service": "",
+                "to": "output",
+                "closed": false
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Scripting",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "label": "code",
+                  "helper": "",
+                  "group": "",
+                  "value": "ret=linspace(0, 2*pi)",
+                  "description": "",
+                  "validation": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCheckboxBlankCircleFill",
+              "values": {
+                "comment": "",
+                "alias": "Kmeans",
+                "debug": true,
+                "code": "pkg load statistics;\n\nC1 = randn (100, 2) + 1;\nC2 = randn (100, 2) - 1;\ndata = [C1; C2];\n\n## Perform clustering\n[idx, centers] = kmeans (data, 2);\n\n## Plot the result\nfigure;\nplot (data (idx==1, 1), data (idx==1, 2), \"ro\");\nhold on;\nplot (data (idx==2, 1), data (idx==2, 2), \"bs\");\nplot (centers (:, 1), centers (:, 2), \"kv\", \"markersize\", 10);\nhold off;\n\nsaveas(gcf,'/data/kmeans.png')"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 778,
+            "y": 176
           },
           "__class__": "Node"
         }
       ],
       "edges": [
         {
-          "id": "reactflow__edge-62958033-58b9-46ce-8d4e-833443014b9coutput-dbb797de-d416-465f-af3b-188d3614407finput",
-          "source": "62958033-58b9-46ce-8d4e-833443014b9c",
+          "id": "reactflow__edge-0784a7ea-5fe1-453e-a404-28700da5b991output-165c3f94-8187-4466-9d1e-5f145aa8e348input",
+          "source": "0784a7ea-5fe1-453e-a404-28700da5b991",
           "sourceHandle": "output",
-          "target": "dbb797de-d416-465f-af3b-188d3614407f",
+          "target": "165c3f94-8187-4466-9d1e-5f145aa8e348",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-77a56038-1a92-4daf-ad01-830a5b1eb5d4output-0abfc61f-132b-46a3-87c7-7032125f3ce8input",
+          "source": "77a56038-1a92-4daf-ad01-830a5b1eb5d4",
+          "sourceHandle": "output",
+          "target": "0abfc61f-132b-46a3-87c7-7032125f3ce8",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-deb981d4-c74a-4d5d-a356-b4291e664d91output-930fc3b6-227c-4b9b-ab00-c41cf14d0b5einput",
+          "source": "deb981d4-c74a-4d5d-a356-b4291e664d91",
+          "sourceHandle": "output",
+          "target": "930fc3b6-227c-4b9b-ab00-c41cf14d0b5e",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-bcc8aca3-5bb9-4a52-a1ec-7c2e30cdaeadoutput-7956e12d-188f-4940-b2c6-31117b22db1binput",
+          "source": "bcc8aca3-5bb9-4a52-a1ec-7c2e30cdaead",
+          "sourceHandle": "output",
+          "target": "7956e12d-188f-4940-b2c6-31117b22db1b",
           "targetHandle": "input",
           "data": {
             "startColor": "#D770AD",
