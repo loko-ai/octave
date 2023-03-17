@@ -1,7 +1,7 @@
 {
   "main": {
     "volumes": [
-      "/home/cecilia/loko/data:/data"
+      "/var/opt/loko/octave:/data"
       ]
   }
 }

@@ -41,7 +41,7 @@ In the file *config.json* you can mount your data volume in order to read/write 
 {
   "main": {
     "volumes": [
-      "/home/user/loko/data:/data"
+      "/var/opt/loko/octave:/data"
       ]
   }
 }
