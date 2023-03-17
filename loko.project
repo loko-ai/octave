@@ -3,7 +3,7 @@
   "id": "octave",
   "description": "",
   "created_on": "18/02/2023, 06:01:39",
-  "last_modify": "06/03/2023, 08:15:54",
+  "last_modify": "17/03/2023, 16:04:04",
   "graphs": {
     "main": {
       "nodes": [
@@ -546,8 +546,8 @@
         {
           "id": "bcc8aca3-5bb9-4a52-a1ec-7c2e30cdaead",
           "position": {
-            "x": 573,
-            "y": 152
+            "x": 580,
+            "y": 147
           },
           "type": "custom",
           "dragHandle": "#nodeHandle",
@@ -626,28 +626,29 @@
                 "type": "String",
                 "value": "Hello world!"
               }
-            }
+            },
+            "locked": null
           },
           "selectable": true,
           "draggable": true,
           "positionAbsolute": {
-            "x": 573,
-            "y": 152
+            "x": 580,
+            "y": 147
           },
           "__class__": "Node"
         },
         {
           "id": "7956e12d-188f-4940-b2c6-31117b22db1b",
           "position": {
-            "x": 778,
-            "y": 176
+            "x": 793,
+            "y": 229
           },
           "type": "custom",
           "dragHandle": "#nodeHandle",
           "sourcePosition": "right",
           "targetPosition": "left",
           "width": 150,
-          "height": 72,
+          "height": 56,
           "selected": false,
           "dragging": false,
           "data": {
@@ -716,8 +717,466 @@
           "selectable": true,
           "draggable": true,
           "positionAbsolute": {
-            "x": 778,
-            "y": 176
+            "x": 793,
+            "y": 229
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "5af999fe-1c55-409a-91e8-a93d75c2a61c",
+          "position": {
+            "x": 7.15732352747051,
+            "y": 469.38251920574055
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Trigger",
+            "events": null,
+            "description": "### Description\nThe TRIGGER component is used to start streams.\n\n### Output\nThe parameter Type can be set as a **String** or an **Object**. The parameter Value, on the other hand, defines the actual output of the component.",
+            "inputs": [],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "description": "The type of data",
+                  "label": "Type",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": [
+                    "String",
+                    "Object"
+                  ],
+                  "value": null
+                },
+                {
+                  "name": "value",
+                  "type": "dynamic",
+                  "dynamicType": {
+                    "String": "area",
+                    "Object": "code"
+                  },
+                  "parent": "type",
+                  "label": "Value",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                }
+              ],
+              "click": "Send message",
+              "icon": "RiPlayFill",
+              "values": {
+                "type": "String",
+                "value": "Hello world!"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 7.15732352747051,
+            "y": 469.38251920574055
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "f0c07c44-90ab-4d96-8bbf-a7fdb2f8ac28",
+          "position": {
+            "x": 221.2051384281881,
+            "y": 422.1434447021527
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Function",
+            "events": null,
+            "description": "### Description\nThe FUNCTION component is used to apply Python code to the input component's. The input can be retrieved using the variable *data*.\n\nTo be able to use data from components of type FUNCTION that are not linked together, the object is set repository.\n\n```python\nrepository.set('value', 5) - this sets the variable value to 5.\nrepository.get('value') - in this way the variable is called value and the value 5 is returned.\n```\n\n### Input\nThe input is used by the component using the variable **data**.\n\n### Output\nThe output coincides with the return of the code defined when the component was created.",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input"
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "propagate",
+                  "type": "boolean",
+                  "label": "Flush at the end"
+                },
+                {
+                  "name": "notify_warnings",
+                  "type": "boolean",
+                  "label": "Notify warnings"
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "description": "A python function that processes the incoming message. \nVariables available are:\n- **data**: the incoming message\n",
+                  "label": "Code",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": null,
+                  "value": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCodeSSlashFill",
+              "values": {
+                "comment": "",
+                "alias": "Data",
+                "debug": false,
+                "propagate": true,
+                "notify_warnings": true,
+                "code": "import random\nc1 = [[random.normalvariate(mu=10, sigma=1) for j in range(2)] for i in range(100)]\nc2 = [[random.normalvariate(mu=-10, sigma=1) for j in range(2)] for i in range(100)]\nreturn [c1,c2]"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 221.2051384281881,
+            "y": 422.1434447021527
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "18e28274-3ba2-4e64-b3e1-eaa4c4537aa4",
+          "position": {
+            "x": 423.798732893658,
+            "y": 510.89014727002757
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Octave",
+            "events": null,
+            "description": "This components allows to run octave/matlab code. The return value has to be assigned to the 'ret' variable",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input",
+                "service": "",
+                "to": "output",
+                "closed": false
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Scripting",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "label": "code",
+                  "helper": "",
+                  "group": "",
+                  "value": "ret=linspace(0, 2*pi)",
+                  "description": "",
+                  "validation": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCheckboxBlankCircleFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": true,
+                "code": "pkg load statistics;\n\ndata = reshape(data, [200,2])';\nc1 = reshape(data(1,:), [100,2]);\nc2 = reshape(data(2,:), [100,2]);\ndata = [c1; c2];\n\n## Perform clustering\n[idx, centers] = kmeans (data, 2);\n\n## Plot the result\nfigure;\nplot (data (idx==1, 1), data (idx==1, 2), \"ro\");\nhold on;\nplot (data (idx==2, 1), data (idx==2, 2), \"bs\");\nplot (centers (:, 1), centers (:, 2), \"kv\", \"markersize\", 10);\nhold off;\n\nsaveas(gcf,'/data/kmeans2.png');\n\nret = centers;\n\n"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 423.798732893658,
+            "y": 510.89014727002757
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "4334693d-d9a9-4f48-9509-ff36a93cf113",
+          "position": {
+            "x": 621.9899172712085,
+            "y": 422.5027479712726
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 88,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Trigger",
+            "events": null,
+            "description": "### Description\nThe TRIGGER component is used to start streams.\n\n### Output\nThe parameter Type can be set as a **String** or an **Object**. The parameter Value, on the other hand, defines the actual output of the component.",
+            "inputs": [],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Common",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "description": "The type of data",
+                  "label": "Type",
+                  "validation": {
+                    "required": "Required field"
+                  },
+                  "fragment": null,
+                  "advanced": false,
+                  "options": [
+                    "String",
+                    "Object"
+                  ],
+                  "value": null
+                },
+                {
+                  "name": "value",
+                  "type": "dynamic",
+                  "dynamicType": {
+                    "String": "area",
+                    "Object": "code"
+                  },
+                  "parent": "type",
+                  "label": "Value",
+                  "validation": {
+                    "required": "Required field"
+                  }
+                }
+              ],
+              "click": "Send message",
+              "icon": "RiPlayFill",
+              "values": {
+                "comment": "",
+                "alias": "",
+                "debug": false,
+                "type": "Object",
+                "value": "[0,0,0,0,1,2,3,7]"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 621.9899172712085,
+            "y": 422.5027479712726
+          },
+          "__class__": "Node"
+        },
+        {
+          "id": "d8a0f4f6-65ed-4bc0-b8aa-013659dd4dd2",
+          "position": {
+            "x": 834.9899172712085,
+            "y": 511.5027479712726
+          },
+          "type": "custom",
+          "dragHandle": "#nodeHandle",
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "width": 150,
+          "height": 56,
+          "selected": false,
+          "dragging": false,
+          "data": {
+            "name": "Octave",
+            "events": null,
+            "description": "This components allows to run octave/matlab code. The return value has to be assigned to the 'ret' variable",
+            "inputs": [
+              {
+                "id": "input",
+                "label": "input",
+                "service": "",
+                "to": "output",
+                "closed": false
+              }
+            ],
+            "outputs": [
+              {
+                "id": "output",
+                "label": "output"
+              }
+            ],
+            "configured": true,
+            "options": {
+              "group": "Scripting",
+              "args": [
+                {
+                  "name": "comment",
+                  "type": "area",
+                  "label": "Node comment",
+                  "helper": "Use it to explain the usage of this node"
+                },
+                {
+                  "name": "alias",
+                  "type": "text",
+                  "label": "Name",
+                  "helper": "Use this name as an alias"
+                },
+                {
+                  "name": "debug",
+                  "type": "boolean",
+                  "label": "Debug to Console",
+                  "divider": true
+                },
+                {
+                  "name": "code",
+                  "type": "code",
+                  "label": "code",
+                  "helper": "",
+                  "group": "",
+                  "value": "ret=linspace(0, 2*pi)",
+                  "description": "",
+                  "validation": null
+                }
+              ],
+              "click": null,
+              "icon": "RiCheckboxBlankCircleFill",
+              "values": {
+                "comment": "",
+                "alias": "NAN Package",
+                "debug": true,
+                "code": "pkg install -forge nan;\npkg load nan;\n\nret = quantile(data, .99)\n"
+              }
+            },
+            "locked": null
+          },
+          "selectable": true,
+          "draggable": true,
+          "positionAbsolute": {
+            "x": 834.9899172712085,
+            "y": 511.5027479712726
           },
           "__class__": "Node"
         }
@@ -770,6 +1229,48 @@
           "source": "bcc8aca3-5bb9-4a52-a1ec-7c2e30cdaead",
           "sourceHandle": "output",
           "target": "7956e12d-188f-4940-b2c6-31117b22db1b",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-5af999fe-1c55-409a-91e8-a93d75c2a61coutput-f0c07c44-90ab-4d96-8bbf-a7fdb2f8ac28input",
+          "source": "5af999fe-1c55-409a-91e8-a93d75c2a61c",
+          "sourceHandle": "output",
+          "target": "f0c07c44-90ab-4d96-8bbf-a7fdb2f8ac28",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#D770AD"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-f0c07c44-90ab-4d96-8bbf-a7fdb2f8ac28output-18e28274-3ba2-4e64-b3e1-eaa4c4537aa4input",
+          "source": "f0c07c44-90ab-4d96-8bbf-a7fdb2f8ac28",
+          "sourceHandle": "output",
+          "target": "18e28274-3ba2-4e64-b3e1-eaa4c4537aa4",
+          "targetHandle": "input",
+          "data": {
+            "startColor": "#D770AD",
+            "stopColor": "#888"
+          },
+          "selected": false,
+          "dragging": false,
+          "__class__": "Edge"
+        },
+        {
+          "id": "reactflow__edge-4334693d-d9a9-4f48-9509-ff36a93cf113output-d8a0f4f6-65ed-4bc0-b8aa-013659dd4dd2input",
+          "source": "4334693d-d9a9-4f48-9509-ff36a93cf113",
+          "sourceHandle": "output",
+          "target": "d8a0f4f6-65ed-4bc0-b8aa-013659dd4dd2",
           "targetHandle": "input",
           "data": {
             "startColor": "#D770AD",
