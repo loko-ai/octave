@@ -3,7 +3,7 @@
   "name": "Octave",
   "description": "This components allows to run octave/matlab code. The return value has to be assigned to the 'ret' variable",
   "group": "Scripting",
-  "icon": "RiCheckboxBlankCircleFill",
+  "icon": "RiCodeBoxFill",
   "click": null,
   "events": null,
   "configured": true,

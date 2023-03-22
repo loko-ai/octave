@@ -3,7 +3,7 @@
   "id": "octave",
   "description": "",
   "created_on": "18/02/2023, 06:01:39",
-  "last_modify": "17/03/2023, 16:04:04",
+  "last_modify": "22/03/2023, 14:28:27",
   "graphs": {
     "main": {
       "nodes": [
@@ -73,7 +73,7 @@
                 }
               ],
               "click": null,
-              "icon": "RiCheckboxBlankCircleFill",
+              "icon": "RiCodeBoxFill",
               "values": {
                 "comment": "",
                 "alias": "Nota",
@@ -250,12 +250,12 @@
                 }
               ],
               "click": null,
-              "icon": "RiCheckboxBlankCircleFill",
+              "icon": "RiCodeBoxFill",
               "values": {
                 "comment": "",
                 "alias": "Fat-Tree",
                 "debug": false,
-                "code": "% Write a script that generates a fat tree topology graph and\n% finds all paths connecting a given source ToR and a given\n% destination ToR. Find also all disjoint paths.\nn = data;\nnservers = n*(n/2)^2;\nnedge = n/2*n;\nnaggregation = n/2*n;\nncore = (n/2)^2;\nnpods = n;\nntot = [nservers,nedge,naggregation,ncore];\nA = eye(sum(ntot));\nserv = 1;\nedge = nservers+1;\nagg = nservers+nedge+1;\n\n% Pods\nfor p = 1:npods\n    for i = 1:n/2\n        for j = 1:n/2\n            % servers - edge\n            A(serv,edge) = 1;\n            A(edge, serv) = 1;\n            serv = serv+1;\n        end\n        for k = 1:n/2\n            % edge - aggregation\n            A(edge,agg) = 1;\n            A(agg, edge) = 1;\n            agg = agg+1;\n        end\n        edge = edge+1;\n        agg = agg-n/2;\n    end\n    agg = agg+n/2;\nend\n% Core\nagg = nservers+nedge+1;\ncore = nservers+nedge+naggregation+1;\nfor p = 1:npods\n    for i = 1:n/2\n        for j = 1:n/2\n            A(agg,core) = 1;\n            A(core,agg) = 1;\n            core = core+1;\n        end\n        agg = agg+1;\n    end\n    core = nservers+nedge+naggregation+1;\nend\n        \n    \n\n\n\n% plot1\nnlevels = 4;\nk = 1;\nx = zeros(sum(ntot),1);\ny = zeros(sum(ntot),1);\nfor i = 1:nlevels\n    for j = 1:ntot(i)\n        y(k) = (i)/(nlevels+1);\n        x(k) = (j)/(ntot(i)+1);\n        k = k+1;\n    end\nend\nfigure\ngplot(A, [x y],'-k*');\nset(gca,'XTick',[],'YTick',[])\ntitle('Fat-Tree Topology','Color','k','fontsize', 18)\naxis([-0.25 1.05 0.12 0.85])\ntext (-0.22,0.2,'Servers','Color',[0 0.5 0.6],'fontsize', 11)\ntext (-0.22,0.4,'Edge','Color',[0 0.5 0.6],'fontsize', 11)\ntext (-0.22,0.6,'Aggregation','Color',[0 0.5 0.6],'fontsize', 11)\ntext (-0.22,0.8,'Core','Color',[0 0.5 0.6],'fontsize', 11)\nfor i = 0:n-1\n    text (i/n,0.17,'Pod','Color',[0 0.5 0.6],'fontsize', 11)\nend\nsaveas(gcf,'/data/network_topologies/fattree1.png')\n\n% plot2\nnlevels = 4;\nk = 1;\nx = zeros(sum(ntot),1);\ny = zeros(sum(ntot),1);\nt = zeros(sum(ntot),1);\nfor i = 1:nlevels\n    for j = 1:ntot(i)\n        x(k) = (nlevels-i+0.2)*sin(j*(2*pi)/(ntot(i)));\n        y(k) = (nlevels-i+0.2)*cos(j*(2*pi)/(ntot(i)));\n        k = k+1;\n    end\nend\nfigure\ngplot(A, [x y],'-k*')\nset(gca,'XTick',[],'YTick',[])\ntitle('Fat-Tree Topology','Color','k','fontsize', 18)\n\nsaveas(gcf,'/data/network_topologies/fattree2.png')"
+                "code": "% Write a script that generates a fat tree topology graph and\n% finds all paths connecting a given source ToR and a given\n% destination ToR. Find also all disjoint paths.\nn = data;\nnservers = n*(n/2)^2;\nnedge = n/2*n;\nnaggregation = n/2*n;\nncore = (n/2)^2;\nnpods = n;\nntot = [nservers,nedge,naggregation,ncore];\nA = eye(sum(ntot));\nserv = 1;\nedge = nservers+1;\nagg = nservers+nedge+1;\n\n% Pods\nfor p = 1:npods\n    for i = 1:n/2\n        for j = 1:n/2\n            % servers - edge\n            A(serv,edge) = 1;\n            A(edge, serv) = 1;\n            serv = serv+1;\n        end\n        for k = 1:n/2\n            % edge - aggregation\n            A(edge,agg) = 1;\n            A(agg, edge) = 1;\n            agg = agg+1;\n        end\n        edge = edge+1;\n        agg = agg-n/2;\n    end\n    agg = agg+n/2;\nend\n% Core\nagg = nservers+nedge+1;\ncore = nservers+nedge+naggregation+1;\nfor p = 1:npods\n    for i = 1:n/2\n        for j = 1:n/2\n            A(agg,core) = 1;\n            A(core,agg) = 1;\n            core = core+1;\n        end\n        agg = agg+1;\n    end\n    core = nservers+nedge+naggregation+1;\nend\n        \n    \n\n\n\n% plot1\nnlevels = 4;\nk = 1;\nx = zeros(sum(ntot),1);\ny = zeros(sum(ntot),1);\nfor i = 1:nlevels\n    for j = 1:ntot(i)\n        y(k) = (i)/(nlevels+1);\n        x(k) = (j)/(ntot(i)+1);\n        k = k+1;\n    end\nend\nfigure\ngplot(A, [x y],'-k*');\nset(gca,'XTick',[],'YTick',[])\ntitle('Fat-Tree Topology','Color','k','fontsize', 18)\naxis([-0.25 1.05 0.12 0.85])\ntext (-0.22,0.2,'Servers','Color',[0 0.5 0.6],'fontsize', 11)\ntext (-0.22,0.4,'Edge','Color',[0 0.5 0.6],'fontsize', 11)\ntext (-0.22,0.6,'Aggregation','Color',[0 0.5 0.6],'fontsize', 11)\ntext (-0.22,0.8,'Core','Color',[0 0.5 0.6],'fontsize', 11)\nfor i = 0:n-1\n    text (i/n,0.17,'Pod','Color',[0 0.5 0.6],'fontsize', 11)\nend\nsaveas(gcf,'/data/fattree1.png')\n\n% plot2\nnlevels = 4;\nk = 1;\nx = zeros(sum(ntot),1);\ny = zeros(sum(ntot),1);\nt = zeros(sum(ntot),1);\nfor i = 1:nlevels\n    for j = 1:ntot(i)\n        x(k) = (nlevels-i+0.2)*sin(j*(2*pi)/(ntot(i)));\n        y(k) = (nlevels-i+0.2)*cos(j*(2*pi)/(ntot(i)));\n        k = k+1;\n    end\nend\nfigure\ngplot(A, [x y],'-k*')\nset(gca,'XTick',[],'YTick',[])\ntitle('Fat-Tree Topology','Color','k','fontsize', 18)\n\nsaveas(gcf,'/data/fattree2.png')"
               }
             },
             "locked": null
@@ -525,7 +525,7 @@
                 }
               ],
               "click": null,
-              "icon": "RiCheckboxBlankCircleFill",
+              "icon": "RiCodeBoxFill",
               "values": {
                 "comment": "",
                 "alias": "Tennis",
@@ -704,7 +704,7 @@
                 }
               ],
               "click": null,
-              "icon": "RiCheckboxBlankCircleFill",
+              "icon": "RiCodeBoxFill",
               "values": {
                 "comment": "",
                 "alias": "Kmeans",
@@ -820,7 +820,7 @@
           "id": "f0c07c44-90ab-4d96-8bbf-a7fdb2f8ac28",
           "position": {
             "x": 221.2051384281881,
-            "y": 422.1434447021527
+            "y": 426.1434447021527
           },
           "type": "custom",
           "dragHandle": "#nodeHandle",
@@ -897,7 +897,7 @@
               "values": {
                 "comment": "",
                 "alias": "Data",
-                "debug": false,
+                "debug": true,
                 "propagate": true,
                 "notify_warnings": true,
                 "code": "import random\nc1 = [[random.normalvariate(mu=10, sigma=1) for j in range(2)] for i in range(100)]\nc2 = [[random.normalvariate(mu=-10, sigma=1) for j in range(2)] for i in range(100)]\nreturn [c1,c2]"
@@ -909,15 +909,15 @@
           "draggable": true,
           "positionAbsolute": {
             "x": 221.2051384281881,
-            "y": 422.1434447021527
+            "y": 426.1434447021527
           },
           "__class__": "Node"
         },
         {
           "id": "18e28274-3ba2-4e64-b3e1-eaa4c4537aa4",
           "position": {
-            "x": 423.798732893658,
-            "y": 510.89014727002757
+            "x": 432.798732893658,
+            "y": 498.89014727002757
           },
           "type": "custom",
           "dragHandle": "#nodeHandle",
@@ -980,7 +980,7 @@
                 }
               ],
               "click": null,
-              "icon": "RiCheckboxBlankCircleFill",
+              "icon": "RiCodeBoxFill",
               "values": {
                 "comment": "",
                 "alias": "",
@@ -993,8 +993,8 @@
           "selectable": true,
           "draggable": true,
           "positionAbsolute": {
-            "x": 423.798732893658,
-            "y": 510.89014727002757
+            "x": 432.798732893658,
+            "y": 498.89014727002757
           },
           "__class__": "Node"
         },
@@ -1162,7 +1162,7 @@
                 }
               ],
               "click": null,
-              "icon": "RiCheckboxBlankCircleFill",
+              "icon": "RiCodeBoxFill",
               "values": {
                 "comment": "",
                 "alias": "NAN Package",
